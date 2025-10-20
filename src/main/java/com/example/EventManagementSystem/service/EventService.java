@@ -1,7 +1,7 @@
-package com.suman.eventmanagement.service;
+package com.example.EventManagementSystem.service;
 
-import com.suman.eventmanagement.entity.Event;
-import com.suman.eventmanagement.repository.EventRepository;
+import com.example.EventManagementSystem.entity.Event;
+import com.example.EventManagementSystem.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
