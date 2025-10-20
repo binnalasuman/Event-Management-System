@@ -1,9 +1,9 @@
-package com.suman.eventmanagement.controller;
+package com.example.EventManagementSystem.controller;
 
-import com.suman.eventmanagement.auth.JwtService;
-import com.suman.eventmanagement.repository.UserRepo;
-import com.suman.eventmanagement.entity.Users; // adjust if needed
-import com.suman.eventmanagement.service.UserService;
+import com.example.EventManagementSystem.auth.JwtService;
+import com.example.EventManagementSystem.repository.UserRepo;
+import com.example.EventManagementSystem.entity.Users; // adjust if needed
+import com.example.EventManagementSystem.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
