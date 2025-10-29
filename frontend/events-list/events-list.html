@@ -1,0 +1,65 @@
+<div class="events-cards-page">
+
+  <!-- Search & Filter Bar -->
+  <form class="search-filter-bar" (ngSubmit)="applyFilters()">
+    <input type="text" placeholder="Title" [(ngModel)]="title" name="title"/>
+    <input type="text" placeholder="Location" [(ngModel)]="location" name="location"/>
+    <select [(ngModel)]="sortBy" name="sortBy">
+      <option value="eventDate">Date</option>
+      <option value="location">Location</option>
+      <option value="title">Title</option>
+    </select>
+    <select [(ngModel)]="direction" name="direction">
+      <option value="asc">Asc</option>
+      <option value="desc">Desc</option>
+    </select>
+    <button type="submit" class="filter-btn">Apply Filters</button>
+    <button type="button" class="filter-btn clear-filters" (click)="clearFilters()">Clear</button>
+  </form>
+
+  <div class="toolbar" *ngIf="isAdmin()">
+    <button class="create-btn" (click)="goCreate()">
+      <span class="material-icons">add_circle</span> New Event
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading-text">
+    <span class="material-icons spin">autorenew</span> Loading...
+  </div>
+  <div *ngIf="error" class="error-alert">
+    <span class="material-icons">error_outline</span> {{ error }}
+  </div>
+
+  <div class="cards-grid">
+    <div *ngFor="let event of events" class="event-card" [class.admin-card]="isAdmin()">
+      <div class="card-main">
+        <div class="card-header">
+          <div class="card-title-row">
+            <span class="event-title" (click)="open(event.id)">{{ event.title }}</span>
+            <span class="location">
+              <span class="material-icons">location_on</span>{{ event.location }}
+            </span>
+          </div>
+          <div class="event-date">
+            <span class="material-icons">event</span>
+            {{ event.eventDate | date:'medium' }}
+          </div>
+        </div>
+        <div class="card-actions">
+          <button *ngIf="!isAdmin()" (click)="book(event.id!)" class="action-btn book-btn">
+            <span class="material-icons">confirmation_number</span> Book
+          </button>
+          <button *ngIf="isAdmin()" (click)="viewBookings(event.id!)" class="action-btn bookings-btn">
+            <span class="material-icons">people</span> Bookings
+          </button>
+          <button *ngIf="isAdmin()" (click)="edit(event.id!)" class="action-btn edit-btn">
+            <span class="material-icons">edit</span> Edit
+          </button>
+          <button *ngIf="isAdmin()" (click)="remove(event.id!)" class="action-btn delete-btn">
+            <span class="material-icons">delete</span> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
