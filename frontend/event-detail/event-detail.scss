@@ -1,0 +1,81 @@
+/* event-details.component.css */
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f8cdda 0%, #1d8cf8 100%);
+  padding: 40px 20px;
+  font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+}
+
+.event-container {
+  background: #fff9f4;
+  border-radius: 20px;
+  box-shadow: 0 6px 28px rgba(76,110,245,0.10), 0 1.5px 7px rgba(255,99,132,0.08);
+  padding: 36px 44px 28px 44px;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 600px;
+  transition: box-shadow 0.3s;
+}
+
+.event-container:hover {
+  box-shadow: 0 12px 32px rgba(29,140,248,0.15), 0 2px 12px rgba(248,92,92,0.10);
+}
+
+.event-container p {
+  margin: 18px 0;
+  font-size: 17px;
+  color: #393e46;
+  line-height: 1.7;
+  background: none;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ff7eb3;
+  border-radius: 3px;
+}
+
+.event-container p:last-child {
+  border-bottom: none;
+}
+
+.event-container strong {
+  color: #ff3276; /* Pink highlight */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+button {
+  margin-top: 32px;
+  background: linear-gradient(90deg, #1d8cf8 0%, #ff3276 100%);
+  color: #fff;
+  border: none;
+  padding: 13px 30px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(29,140,248,0.14), 0 2px 6px rgba(255,50,118,0.08);
+}
+
+button:hover {
+  background: linear-gradient(90deg, #ff3276 0%, #1d8cf8 100%);
+  box-shadow: 0 4px 20px rgba(255,50,118,0.18), 0 2px 8px rgba(29,140,248,0.10);
+  transform: translateY(-2px) scale(1.03);
+}
+
+div[ngIf="loading"],
+div[ngIf="error"] {
+  font-size: 18px;
+  margin-top: 22px;
+  text-align: center;
+  color: #1d8cf8;
+  font-weight: 500;
+}
+
+div[ngIf="error"] {
+  color: #ff3276;
+}
