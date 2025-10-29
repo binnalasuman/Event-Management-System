@@ -1,0 +1,36 @@
+<head><link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24..48,400..700,0..1,-50..200" />
+</head>
+<div class="landing-wrapper">
+  <section class="hero" role="region" aria-label="Event Management hero">
+    <div class="logo-badge" aria-hidden="true">
+      <svg viewBox="0 0 120 120" width="84" height="84" role="img" aria-label="EM logo">
+        <defs>
+          <radialGradient id="bg" cx="50%" cy="45%">
+            <stop offset="0%" stop-color="#9ef5e0" />
+            <stop offset="60%" stop-color="#22d2aa" />
+            <stop offset="100%" stop-color="#159e87" />
+          </radialGradient>
+        </defs>
+        <circle cx="60" cy="60" r="52" fill="url(#bg)"/>
+        <circle cx="60" cy="60" r="44" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="2"/>
+        <text x="50%" y="58%" text-anchor="middle" font-size="42" fill="#fff" font-family="Inter, Arial, sans-serif">EM</text>
+      </svg>
+    </div>
+
+    <h1 class="headline">Welcome to Event Management</h1>
+    <p class="subtitle">Effortlessly discover, book, and manage your events</p>
+
+    <div class="cta">
+      <button routerLink="/login" class="btn user" aria-label="Login as User">
+        <span class="material-symbols-rounded" aria-hidden="true">person</span>
+        User Login
+      </button>
+
+      <button routerLink="/login" class="btn admin" aria-label="Login as Admin">
+        <span class="material-symbols-rounded" aria-hidden="true">admin_panel_settings</span>
+        Admin Login
+      </button>
+    </div>
+  </section>
+</div>
