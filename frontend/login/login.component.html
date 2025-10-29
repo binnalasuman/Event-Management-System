@@ -1,0 +1,11 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>Login</h2>
+    <form class="login-form" (ngSubmit)="submit()">
+      <input placeholder="Email" [(ngModel)]="email" name="email" required autocomplete="username" />
+      <input placeholder="Password" [(ngModel)]="password" name="password" type="password" required autocomplete="current-password" />
+      <button type="submit">Login</button>
+    </form>
+    <div *ngIf="error" class="login-error">{{ error }}</div>
+  </div>
+</div>
