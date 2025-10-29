@@ -1,0 +1,54 @@
+<div class="event-form-page">
+  <div class="event-form-card">
+
+    <h2>
+      <span class="material-icons form-icon">event_note</span>
+      {{ id ? 'Edit Event' : 'New Event' }}
+    </h2>
+
+    <form (ngSubmit)="save()" autocomplete="off">
+      <div *ngIf="error" class="form-error">{{ error }}</div>
+
+      <div class="form-group">
+        <label>
+          <span class="field-label">Title</span>
+          <input [(ngModel)]="model.title" name="title" required autocomplete="off" />
+        </label>
+        <div class="input-hint" *ngIf="!model.title">Title is required</div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <span class="field-label">Location</span>
+          <input [(ngModel)]="model.location" name="location" required autocomplete="off" />
+        </label>
+        <div class="input-hint" *ngIf="!model.location">Location is required</div>
+      </div>
+        
+      <div class="form-group">
+        <label>
+          <span class="field-label">Date & Time</span>
+          <input [(ngModel)]="model.eventDate" name="eventDate" type="datetime-local" required />
+        </label>
+        <div class="input-hint" *ngIf="!model.eventDate">Date/time is required</div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <span class="field-label">Seats</span>
+          <input [(ngModel)]="model.availableSeats" name="availableSeats" type="number" min="1" required />
+        </label>
+        <div class="input-hint" *ngIf="!model.availableSeats || model.availableSeats < 1">Minimum 1 seat</div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="save-btn">
+          <span class="material-icons">save</span> Save
+        </button>
+        <a routerLink="/events" class="cancel-btn">
+          <span class="material-icons">close</span> Cancel
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
