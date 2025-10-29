@@ -1,7 +1,7 @@
-package com.example.EventManagementSystem.service;
+package com.suman.eventmanagement.service;
 
-import com.example.EventManagementSystem.entity.Event;
-import com.example.EventManagementSystem.repository.EventRepository;
+import com.suman.eventmanagement.entity.Event;
+import com.suman.eventmanagement.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class EventService {
 
     private final EventRepository eventRepository;
+
 
     public Page<Event> getAllEvents(Pageable pageable) {
         return eventRepository.findAll(pageable);
@@ -79,3 +80,4 @@ public class EventService {
         }).orElse(false);
     }
 }
+
