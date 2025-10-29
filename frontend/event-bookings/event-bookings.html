@@ -1,0 +1,39 @@
+<div class="bookings-page">
+  <div class="bookings-card">
+    <h2>
+      <span class="material-icons bookings-icon">people</span>
+      Event Bookings
+    </h2>
+    <div *ngIf="loading" class="loading-text">
+      <span class="material-icons spin">autorenew</span> Loading...
+    </div>
+    <div *ngIf="error" class="error-alert">
+      <span class="material-icons">error_outline</span>
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && bookings && bookings.length > 0">
+      <div class="booking-list-header">
+        <span>User</span>
+        <span>Pass</span>
+      </div>
+      <div *ngFor="let booking of bookings" class="booking-card">
+        <div class="booking-user">
+          <span class="material-icons user-ico">person</span>
+          <span>{{ booking.user }}</span>
+        </div>
+        <div class="booking-pass">
+          <span class="pass-pill">{{ booking.pass }}</span>
+          <button class="copy-btn" (click)="copyToClipboard(booking.pass)" title="Copy Pass">
+            <span class="material-icons">content_copy</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && bookings && bookings.length === 0" class="not-found">
+      <span class="material-icons">info</span>
+      No bookings found.
+    </div>
+  </div>
+</div>
