@@ -1,11 +1,16 @@
-package com.example.EventManagementSystem.controller;
+package com.suman.eventmanagement.controller;
 
-import com.example.EventManagementSystem.auth.JwtService;
-import com.example.EventManagementSystem.repository.UserRepo;
-import com.example.EventManagementSystem.entity.Users; // adjust if needed
-import com.example.EventManagementSystem.service.UserService;
+import com.suman.eventmanagement.auth.JwtService;
+import com.suman.eventmanagement.repository.UserRepo;
+import com.suman.eventmanagement.entity.Users; 
+import com.suman.eventmanagement.service.UserService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +21,7 @@ import java.util.Map;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private final UserService service;           // if you have one
+    private final UserService service;      
     private final AuthenticationManager authenticationManager;
     private final UserRepo userRepo;
     private final JwtService jwtService;
@@ -35,15 +40,35 @@ public class UserController {
     public Users register(@Valid @RequestBody Users user) {
         return service.register(user);
     }
+    @RestController
+    @RequestMapping("/api/users")
+    public class TestLoginController {
 
-    @PostMapping("/login")
-    public Map<String, Object> login(@RequestBody LoginDto req) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(req.getEmail(), req.getPassword()));
+        private final UserService userService;
 
-        var user = userRepo.findByEmail(req.getEmail()).orElseThrow();
-        String token = jwtService.generateToken(user.getEmail(), List.of("ROLE_" + user.getRole()));
-        return Map.of("token", token, "role", user.getRole());
+        public TestLoginController(UserService userService) {
+            this.userService = userService;
+        }
 
+
+        @PostMapping("/login")
+        public ResponseEntity<?> login(@RequestBody LoginDto req) {
+            try {
+                String result = service.loginManual(req.getEmail(), req.getPassword());
+
+                if ("Success".equals(result)) {
+                    var user = userRepo.findByEmail(req.getEmail()).orElseThrow();
+                    String token = jwtService.generateToken(user.getEmail(), List.of("ROLE_" + user.getRole()));
+                    return ResponseEntity.ok(Map.of("token", token, "role", user.getRole()));
+                } else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid credentials"));
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Invalid email or password"));
+            }
+        }
     }
 }
+
+
+
